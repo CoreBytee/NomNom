@@ -1,0 +1,15 @@
+{
+  "main": "./backend/index.js",
+  "dependencies": {
+    "@corebyte/logger": "^1.0.2",
+    "@elysiajs/static": "^1.0.2",
+    "elysia": "^1.0.7"
+  },
+  "scripts": {
+    "dev": "bun --watch ."
+  },
+  "type": "module",
+  "devDependencies": {
+    "p5": "^1.9.2"
+  }
+}

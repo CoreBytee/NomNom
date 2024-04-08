@@ -4,7 +4,7 @@ export default class Game {
     constructor() {
         new p5(
             (p) => {
-                p.setup = () => p.createCanvas(p.windowWidth, p.windowHeight),
+                p.setup = () => p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL),
                 p.windowResized = () => p.resizeCanvas(p.windowWidth, p.windowHeight),
                 p.draw = () => this.Draw()
                 this.P5 = p

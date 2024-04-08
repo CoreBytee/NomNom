@@ -11,7 +11,10 @@ export default class Game {
             },
             document.querySelector("body")
         )
-        console.log(this.P5)
+
+        // Constants
+        this.PlayfieldHeight = 5000
+        this.PlayfieldWidth = 5000
 
         // Game State
         this.State = "Menu"

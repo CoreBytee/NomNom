@@ -18,7 +18,6 @@ export default class Camera {
     }
 
     Draw() {
-        console.log(this.PositionX, this.PositionY, this.Zoom)
         this.P5.translate(
             -this.PositionX,
             -this.PositionY,

@@ -56,9 +56,9 @@ body footer {
   opacity: 1;
   transition: opacity 1s;
 }
-body:not(.menu) header,
-body:not(.menu) main,
-body:not(.menu) footer {
+body:not(.Menu) header,
+body:not(.Menu) main,
+body:not(.Menu) footer {
   opacity: 0;
 }
 canvas {

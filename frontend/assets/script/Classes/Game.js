@@ -24,15 +24,20 @@ export default class Game {
         this.Frame = 0
 
         // Objects
-        this.Camera = new Camera(this),
-        this.Background = new Background(this),
-        this.Border = new Border(this),
+        this.Debug = new Debug(this)
+        this.Camera = new Camera(this)
+        this.Background = new Background(this)
+        this.Border = new Border(this)
 
         this.Hook()
     }
 
     Setup() {
+        const Font = this.P5.loadFont("assets/font/monofont.otf")
+        this.P5.textFont(Font)
+
         this.Camera.Setup()
+        this.Debug.Setup()
         this.Border.Setup()
         this.Background.Setup()
     }
@@ -44,10 +49,18 @@ export default class Game {
         this.Camera.PreDraw()
         this.Border.PreDraw()
         this.Background.PreDraw()
+        this.Debug.PreDraw()
 
         this.Camera.Draw()
         this.Border.Draw()
         this.Background.Draw()
+        this.Debug.Draw()
+
+        this.Camera.AfterDraw()
+        this.Border.AfterDraw()
+        this.Background.AfterDraw()
+        this.Debug.AfterDraw()
+
     }
 
     Hook() {

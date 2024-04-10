@@ -38,17 +38,17 @@ export default class Border {
             100
         ).forEach(
             (X) => {
-                
                 this.P5.line(
                     X - 5000 + LineOffset,
                     -5000,
                     X + 10000 + LineOffset,
                     10000
                 )
-                // console.log(X)
             }
         )
+    }
 
-
+    AfterDraw() {
+        
     }
 }

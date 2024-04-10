@@ -10,9 +10,18 @@ export default class Background {
         this.LineColor = "#1e1e1e"
         this.StepSize = 100
 
+        // State
+        this.IdleDirection = 1
+
     }
 
     Setup() {
+        if (this.Game.State == "Menu") {
+            this.Game.Camera.SetPosition(
+                2500,
+                2500
+            )
+        }
     }
 
     PreDraw() {
@@ -36,13 +45,13 @@ export default class Background {
         if (this.Game.State == "Menu") {
             const Camera = this.Game.Camera
 
-            if (Camera.PositionX < 1000) { Camera.SetPositionX(1000) }
-            if (Camera.PositionY < 1000) { Camera.SetPositionY(1000) }
+            if (Camera.PositionX < 1000 || Camera.PositionY < 1000) { this.SwapIdleDirection() }
+            if (Camera.PositionX > 4000 || Camera.PositionY > 4000) { this.SwapIdleDirection() }
 
-            if (Camera.PositionX > 4000) { Camera.SetPositionX(1000) }
-            if (Camera.PositionY > 4000) { Camera.SetPositionY(1000) }
-
-            Camera.MovePosition(1, 1)
+            Camera.MovePosition(
+                this.IdleDirection,
+                this.IdleDirection
+            )
         }
     }
 
@@ -68,5 +77,13 @@ export default class Background {
                 this.P5.line(0, Y, this.Game.PlayfieldWidth, Y)
             }
         )
+    }
+
+    AfterDraw() {
+        
+    }
+
+    SwapIdleDirection() {
+        this.IdleDirection *= -1
     }
 }

@@ -1,6 +1,7 @@
 import Background from "./Background.js"
 import Border from "./Border.js"
 import Camera from "./Camera.js"
+import Debug from "./Debug.js"
 
 export default class Game {
     constructor() {

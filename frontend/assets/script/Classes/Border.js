@@ -7,7 +7,6 @@ export default class Border {
 
         // Constants
         this.BorderColor = "#cc0000"
-        this.LineColor = "#ff0000"
         this.LineFactor = 4
     }
 

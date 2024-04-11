@@ -8,10 +8,11 @@ export default class Camera {
         // State
         this.PositionX = 0
         this.PositionY = 0
-        this.Zoom = 1
+        this.Zoom = 0
 
         this.EaserX = new Easer(this)
         this.EaserY = new Easer(this)
+        this.EaserZoom = new Easer(this)
 
     }
 
@@ -34,8 +35,12 @@ export default class Camera {
     Draw() {
         const EaseXResult = this.EaserX.Frame()
         if (EaseXResult) { this.PositionX = EaseXResult }
+
         const EaseYResult = this.EaserY.Frame()
         if (EaseYResult) { this.PositionY = EaseYResult }
+
+        const EaseZoomResult = this.EaserZoom.Frame()
+        if (EaseZoomResult) { this.Zoom = EaseZoomResult }
 
         this.P5.translate(
             -this.PositionX,
@@ -46,7 +51,7 @@ export default class Camera {
 
     AfterDraw() {
         this.P5.translate(
-            0, 0, 0
+            0, 0, -this.Zoom
         )
     }
 
@@ -104,10 +109,21 @@ export default class Camera {
     }
 
     SetZoom(Zoom) {
+        this.EaserZoom.Reset()
+
         this.Zoom = Zoom
     }
 
     MoveZoom(DeltaZoom) {
         this.SetZoom(this.Zoom + DeltaZoom)
+    }
+
+    EaseZoom(Zoom, FrameCount, EasingFunction) {
+        this.EaserZoom.StartEase(
+            this.Zoom,
+            Zoom,
+            FrameCount,
+            EasingFunction
+        )
     }
 }

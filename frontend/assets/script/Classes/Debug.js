@@ -22,12 +22,12 @@ export default class Debug {
             `Frame: ${this.Game.Frame}`,
             `FPS: ${Math.floor(this.P5.frameRate())}`,
             `State: ${this.Game.State}`,
-            `Camera: ${this.Game.Camera.PositionX}, ${this.Game.Camera.PositionY}`,
+            `Camera: ${Math.floor(this.Game.Camera.PositionX)}, ${Math.floor(this.Game.Camera.PositionY)}, ${Math.floor(this.Game.Camera.Zoom)}`,
             `Camera ease: ${this.Game.Camera.EaserX.EndPosition} ${this.Game.Camera.EaserY.EndPosition}`
         ]
 
         this.P5.fill("white")
-        this.P5.textSize(20)
+        this.P5.textSize(15)
 
         this.P5.text(
             Lines.join("\n"),

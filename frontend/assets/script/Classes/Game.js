@@ -2,6 +2,7 @@ import Background from "./Background.js"
 import Border from "./Border.js"
 import Camera from "./Camera.js"
 import Debug from "./Debug.js"
+import MessageHandler from "./MessageHandler.js"
 
 export default class Game {
     constructor() {
@@ -25,6 +26,9 @@ export default class Game {
         this.Frame = 0
 
         // Objects
+        this.MessageHandler = new MessageHandler(this)
+
+        // Render Objects
         this.Debug = new Debug(this)
         this.Camera = new Camera(this)
         this.Background = new Background(this)

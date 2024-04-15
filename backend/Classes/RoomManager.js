@@ -1,3 +1,5 @@
+import Room from "./Room"
+
 export default class RoomManager {
     constructor(Game) {
         this.Game = Game
@@ -14,5 +16,11 @@ export default class RoomManager {
 
         this.Game.Logger.Information("Player connected to room " + FoundRoom.RoomId)
         FoundRoom.ConnectPlayer(Connection)
+    }
+
+    async HandleMessage(Connection, Message) {
+        let Room = this.Rooms.find(Room => Room.Players.includes(Connection))
+
+        Room.HandleMessage(Connection, Message)
     }
 }

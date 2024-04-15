@@ -16,4 +16,15 @@ export default class Player {
             }
         )
     }
+
+    SendMessage(MessageType, Data) {
+        this.Connection.send(
+            JSON.stringify(
+                {
+                    Type: MessageType,
+                    Data: Data
+                }
+            )
+        )
+    }
 }

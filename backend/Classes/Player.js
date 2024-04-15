@@ -9,11 +9,15 @@ export default class Player {
         this.PositionX = random(100, 5000 - 100)
         this.PositionY = random(100, 5000 - 100)
 
+        this.DirectionX = 0
+        this.DirectionY = 0
+
         this.SendMessage(
             "Spawn",
             {
                 PositionX: this.PositionX,
-                PositionY: this.PositionY
+                PositionY: this.PositionY,
+                Id: this.PlayerId
             }
         )
     }
@@ -27,5 +31,20 @@ export default class Player {
                 }
             )
         )
+    }
+
+    HandleMessage(Message) {
+        const MessageType = Message.Type
+        const MessageData = Message.Data
+
+        switch (MessageType) {
+            case "DirectionChanged":
+                this.DirectionX = MessageData.DirectionX
+                this.DirectionY = MessageData.DirectionY
+                break;
+        
+            default:
+                break;
+        }
     }
 }

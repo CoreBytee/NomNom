@@ -1,3 +1,6 @@
+import Clamp from "../Helpers/Clamp.js"
+import Round from "../Helpers/Round.js"
+
 export default class LocalPlayer {
     constructor(Game) {
         this.Game = Game
@@ -5,6 +8,9 @@ export default class LocalPlayer {
 
         this.PositionX = 2500
         this.PositionY = 2500
+
+        this.DirectionX = 0
+        this.DirectionY = 0
     }
 
     Setup() {
@@ -12,7 +18,24 @@ export default class LocalPlayer {
     }
 
     PreDraw() {
+        if (this.Game.State != "Game") { return }
 
+        const NewDirectionX = Round(Clamp(this.Game.MouseOffsetX / (this.P5.width / 4), -1, 1), 2)
+        const NewDirectionY = Round(Clamp(this.Game.MouseOffsetY / (this.P5.height / 4), -1, 1), 2)
+        const DirectionChanged = NewDirectionX != this.DirectionX || NewDirectionY != this.DirectionY
+        
+        if (DirectionChanged) {
+            this.DirectionX = NewDirectionX
+            this.DirectionY = NewDirectionY
+
+            this.Game.SendMessage(
+                "DirectionChanged",
+                {
+                    DirectionX: this.DirectionX,
+                    DirectionY: this.DirectionY
+                }
+            )
+        }
     }
 
     Draw() {

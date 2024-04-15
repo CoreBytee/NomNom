@@ -83,11 +83,29 @@ export default class Game {
 
     Connect(PlayerName) {
         this.SetState("Connecting")
+        this.Socket = new WebSocket(`ws://${window.location.host}/ws?playername=${PlayerName}`)
+        this.Socket.addEventListener(
+            "open",
+            () => { this.SetState("Game") }
+        )
+
+        this.Socket.addEventListener(
+            "close",
+            () => { this.Disconnect() }
+        )
+
+        this.Socket.addEventListener(
+            "message",
+            (Message) => {
+                this.MessageHandler.HandleMessage(Message.data)
+            }
+        )
     }
 
     Disconnect() {
         this.SetState("Menu")
         this.Socket = null
+        this.Camera.SetPosition(2500, 2500)
     }
 
     

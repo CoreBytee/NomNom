@@ -7,6 +7,19 @@ export default class Server {
         this.App = new Elysia()
         this.App.use(staticPlugin({ assets: "frontend", prefix: "/"}))
 
+        this.App.ws(
+            "/ws",
+            {
+                open: (Connection) => {
+                    this.Game.RoomManager.HandleConnection(Connection)
+                },
+
+                message: (Connection, Message) => {
+                    this.Game.RoomManager.HandleMessage(Connection, Message)
+                }
+            }
+        )
+
         console.log
         this.App.listen(
             process.env.SERVER_PORT,

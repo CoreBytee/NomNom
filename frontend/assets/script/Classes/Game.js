@@ -39,6 +39,14 @@ export default class Game {
         this.Hook()
     }
 
+    get MouseOffsetX() { // Calculate the offset to the camera
+        return Math.floor(this.P5.mouseX - this.P5.width / 2)
+    }
+
+    get MouseOffsetY() {
+        return Math.floor(this.P5.mouseY - this.P5.height / 2)
+    }
+
     Setup() {
         const Font = this.P5.loadFont("assets/font/monofont.otf")
         this.P5.textFont(Font)

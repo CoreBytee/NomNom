@@ -92,6 +92,7 @@ export default class Game {
     }
 
     Connect(PlayerName) {
+        if (this.State == "Connecting" || this.State == "Game") { return }
         this.SetState("Connecting")
         this.Socket = new WebSocket(`ws://${window.location.host}/ws?playername=${PlayerName}`)
         this.Socket.addEventListener(

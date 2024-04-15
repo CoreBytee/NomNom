@@ -119,5 +119,16 @@ export default class Game {
         this.Camera.SetPosition(2500, 2500)
     }
 
+    SendMessage(MessageType, Data) {
+        this.Socket.send(
+            JSON.stringify(
+                {
+                    Type: MessageType,
+                    Data: Data
+                }
+            )
+        )
+    }
+
     
 }

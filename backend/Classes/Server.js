@@ -20,7 +20,6 @@ export default class Server {
             }
         )
 
-        console.log
         this.App.listen(
             process.env.SERVER_PORT,
             () => this.Game.Logger.Information("Server is running on port " + process.env.SERVER_PORT)

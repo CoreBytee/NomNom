@@ -32,7 +32,27 @@ export default class Room {
     }
 
     Tick() {
-        
+        this.Players.forEach(
+            (Player) => {
+                Player.PositionX += Player.DirectionX * 10
+                Player.PositionY += Player.DirectionY * 10
+            }
+        )
+
+        this.Broadcast(
+            "UpdatePositions",
+            {
+                Players: this.Players.map(
+                    (Player) => {
+                        return {
+                            PositionX: Player.PositionX,
+                            PositionY: Player.PositionY,
+                            Id: Player.PlayerId
+                        }
+                    }
+                )
+            }
+        )
     }
 
     ConnectPlayer(Connection) {

@@ -28,6 +28,7 @@ export default class Game {
 
         // Objects
         this.MessageHandler = new MessageHandler(this)
+        this.Players = []
 
         // Render Objects
         this.Debug = new Debug(this)

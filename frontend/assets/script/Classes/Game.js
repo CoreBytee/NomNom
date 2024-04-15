@@ -2,6 +2,7 @@ import Background from "./Background.js"
 import Border from "./Border.js"
 import Camera from "./Camera.js"
 import Debug from "./Debug.js"
+import LocalPlayer from "./LocalPlayer.js"
 import MessageHandler from "./MessageHandler.js"
 
 export default class Game {
@@ -33,6 +34,7 @@ export default class Game {
         this.Camera = new Camera(this)
         this.Background = new Background(this)
         this.Border = new Border(this)
+        this.LocalPlayer = new LocalPlayer(this)
 
         this.Hook()
     }
@@ -45,6 +47,7 @@ export default class Game {
         this.Debug.Setup()
         this.Border.Setup()
         this.Background.Setup()
+        this.LocalPlayer.Setup()
     }
 
     Draw() {
@@ -55,16 +58,19 @@ export default class Game {
         this.Border.PreDraw()
         this.Background.PreDraw()
         this.Debug.PreDraw()
+        this.LocalPlayer.PreDraw()
 
         this.Camera.Draw()
         this.Border.Draw()
         this.Background.Draw()
         this.Debug.Draw()
+        this.LocalPlayer.Draw()
 
         this.Camera.AfterDraw()
         this.Border.AfterDraw()
         this.Background.AfterDraw()
         this.Debug.AfterDraw()
+        this.LocalPlayer.AfterDraw()
 
     }
 

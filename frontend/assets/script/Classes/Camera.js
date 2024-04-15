@@ -25,7 +25,7 @@ export default class Camera {
     }
 
     Setup() {
-        this.EasePosition(5000, 5000, 300)
+
     }
 
     PreDraw() {

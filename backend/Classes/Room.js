@@ -5,6 +5,7 @@ export default class Room {
         this.Game = Game
         this.RoomId = RoomId
         this.Players = []
+        this.NextPlayerId = 0
 
         this.TickLoop()
     }
@@ -35,8 +36,11 @@ export default class Room {
     }
 
     ConnectPlayer(Connection) {
-        const NewPlayer = new Player(Room, Connection)
+        const NewPlayer = new Player(this, Connection, this.NextPlayerId)
+        Connection.data.PlayerId = this.NextPlayerId
+        Connection.data.RoomId = this.RoomId
         this.Players.push(NewPlayer)
+        this.NextPlayerId++
     }
 
     Broadcast(Message, Data, Exclude=[]) {
@@ -47,5 +51,13 @@ export default class Room {
                 TargetPlayer.SendMessage(Message, Data)
             }
         )
+    }
+
+    HandleMessage(Connection, Message) {
+        const Player = this.Players.find(
+            (Player) => { return Player.PlayerId == Connection.data.PlayerId }
+        )
+
+        Player.HandleMessage(Message)
     }
 }
